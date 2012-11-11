@@ -1,0 +1,42 @@
+<div class="row-fluid">
+<div class="span8">
+<%= link_to 'New Experiment', new_experiment_path, class: 'btn btn-info pull-right' %>
+<h2>Experiments:</h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Samples</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @experiments.each do |experiment| %>
+  <tr>
+    <td><%= experiment.name %></td>
+    <td><%= best_in_place experiment, :description, type: :text_area %></td>
+    <td><ul><% experiment.samples.each do |s| %>
+        <li><%=link_to s.name, sample_path(s) %></li>
+        <%end%></ul>
+    <td><%= link_to 'Edit', edit_experiment_path(experiment) %></td>
+    <td><%= link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<div class="span4">
+  <%= semantic_search_form_for @search do |f| %>
+    <%= f.inputs "Filter experiments" do %>
+      <%= f.input :name_cont, label: "Name:" %>
+      <%= f.input :samples_name_cont, label: "Samples:", as: :check_boxes, collection: Sample.all %>
+    <%end%>
+  <%= f.actions do %>
+  <%= f.action :submit %>
+  <%end%>
+<% end %>
+</div>
+</div>
+
+
+

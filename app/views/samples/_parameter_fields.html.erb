@@ -1,0 +1,28 @@
+<div class="nested-fields parameters-fields span3">
+<%= f.inputs "Parameters:" do %>
+<%= f.input :name %>
+<%= f.input :base %>
+<%= f.input :bias %>
+<%= f.input :h2 %>
+<%= f.input :ch4 %>
+<%= f.input :b2h6h2 %>
+<%= f.input :n2 %>
+<%= f.input :tc %>
+<%= f.input :pmw %>
+<%= f.input :p %>
+<%= f.input :time %>
+<%= f.input :holder %>
+
+<div id="customparameters">
+<%= f.semantic_fields_for :custom_parameters do |c| %>
+<%= render 'customparameter_fields', f: c %>
+<% end %>
+
+<%= link_to_add_association "Add custom parameter", f, :custom_parameters, class: 'btn btn-small btn-primary' %>
+	<br /><br />
+</div>
+<%end%>
+
+
+<%= link_to_remove_association "Remove this parameters", f, class: 'btn btn-danger' %>
+</div>

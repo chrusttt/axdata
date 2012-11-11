@@ -1,0 +1,16 @@
+<% @users.each do |u| %>
+   <tr>
+        
+        <td><%= u.name %></td>
+        <td><%= mail_to "#{u.email}", u.email %></td>
+        <% if current_user.role == "Super Admin" && u != current_user  %>
+        <td><%= best_in_place u, :role, type: :select, collection: User::ROLES_IN_PLACE %></td>
+        <% else %>
+        <td><%= u.role %> </td>
+        <% end %>
+        <% if current_user.role == "Super Admin" %>
+        <td><%= link_to "Delete user", user_path(u), method: :delete,
+                                    data: { confirm: "Do you really want to destroy user #{u.email}?" } %></td>
+        <%end%>
+    </tr>
+    <% end %>

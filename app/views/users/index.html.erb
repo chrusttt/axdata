@@ -1,0 +1,28 @@
+<div class="row-fluid">
+<% if current_user.role == "Super Admin" %>
+<div class="span8">
+<% else %>
+<div class="span12">
+<%end%>
+<table class="table table-striped">
+     <thead>
+              <tr>
+            <th>User name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Delete</th>
+              </tr>
+    </thead>
+
+
+<tbody id="users">
+  <%= render 'users' %>
+</tbody>
+</table>
+</div>
+<% if current_user.role == "Super Admin" %>
+<div id="new-user" class="span4">
+  <%= link_to "Add user", new_user_registration_path, remote: true, class: 'btn btn-block btn-primary' %>
+</div>
+<%end%>
+</div>

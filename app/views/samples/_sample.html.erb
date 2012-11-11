@@ -1,0 +1,9 @@
+<tr class='<%= state_class(sample) %>'>
+    <td class="picture"><%= default_pic_index(sample) %></td>
+    <td><%= link_to sample.name, sample %></td>
+    <td><%= truncate(sample.description, length: 25) %></td>
+    <td><%= sample.state %></td>
+    <td><%= sample.date %></td>
+    <td><%= sample.user.name %></td>
+    <td><%= link_to 'Destroy', sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>

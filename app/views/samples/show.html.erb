@@ -1,0 +1,70 @@
+<div class="row-fluid">
+  <div class="span8">
+  <% unless @sample.parameters.empty? %>
+  <h2>Parameters:</h2>
+    <table class="table table-bordered">
+     <thead>
+        <th>Name</th>
+        <th>Base</th>
+        <th>Bias [V]</th>
+        <th>H2 [Sccm]</th>
+        <th>CH4 [Sccm]</th>
+        <th>B2H6/H2 [Sccm]</th>
+        <th>N2 [Sccm]</th>
+        <th>Tc [C]</th>
+        <th>Pmw [W]</th>
+        <th>P [Tor]</th>
+        <th>Time</th>
+        <th>Holder</th>
+        <th>Custom parameters</th>
+      </thead>
+      <tbody>
+          <% @sample.parameters.each do |p| %>
+          <tr><td><%= p.name %></td>
+          <td><%= p.base %></td>
+          <td><%= p.bias %></td>
+          <td><%= p.h2 %></td>
+          <td><%= p.ch4 %></td>
+          <td><%= p.b2h6h2 %></td>
+          <td><%= p.n2 %></td>
+          <td><%= p.tc %></td>
+          <td><%= p.pmw %></td>
+          <td><%= p.p %></td>
+          <td><%= p.time %></td>
+          <td><%= p.holder %></td>
+          <td><% p.custom_parameters.each do |c| %>
+              <ul>
+                <li><%= c.name %>: <%= c.value %></li>
+              </ul>
+              <%end%>
+            </td></tr>
+          <%end%>
+      </tbody>  
+</table>
+<% else %>
+<h2>There are no parameters for this sample in database</h2>
+<%end%>
+<h2>Results:</h2>
+  <div id="results">
+  <ul id="result-list">
+    <%= render 'results/results_list' %>
+  </ul>
+</div>
+<div class='links'>
+  <%= link_to "Add result", new_sample_result_path(@sample), remote: true, class: 'btn btn-primary' %>
+</div>
+<div id="new-result">
+</div>
+  </div>
+  <div class="span4">
+    <table class="table">
+      <tr> <td colspan='2'><%= image_tag(@sample.pic_url(:show)) %> </td> </tr>
+      <tr> <td colspan='2'><%= link_to "Edit sample", edit_sample_path(@sample), class: 'btn btn-info' %> <%= link_to "Remove sample", sample_path(@sample,), method: :delete, class: 'btn btn-alert', confirm: "Are you sure?" %>  </td></tr>
+      <tr> <td class="info">Name:</td> <td class="show-description"><%= best_in_place @sample, :name %></td></tr>
+      <tr> <td class="info">Date:</td> <td class="show-description"><%= @sample.date %></td></tr>
+      <tr> <td class="info">State:</td> <td class="show-description"><%= best_in_place @sample, :state, type: :select, collection: Sample::STATES_IN_PLACE %></td></tr>
+      <tr> <td class="info">User:</td> <td class="show-description"><%= @sample.user.name %></td></tr>
+      <tr> <td class="info">Description:</td> <td class="show-description"><%= best_in_place @sample, :description, type: :textarea %></td></tr>
+    </table>
+  </div>
+</div>

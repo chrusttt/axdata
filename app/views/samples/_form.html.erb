@@ -1,0 +1,26 @@
+<%= semantic_form_for(@sample, html: {multipart: true}) do |f| %>
+  <%= f.semantic_errors %>
+  <%= f.inputs "Sample" do  %>
+  
+    <%= f.input :name, label: {class: "control_label"} %>
+    <%= f.input :description, input_html: { rows: 8} %>
+    <%= f.input :date %>
+    <%= f.input :pic %>
+    <%= f.input :state, as: :select, collection: Sample::STATES, include_blank: false %>
+  <% end %>
+  <div id="parameters_form" class="row">
+  
+  <%= f.semantic_fields_for :parameters do |p| %>
+  <%= render 'parameter_fields', f: p %>
+  <%end%>
+  <div id="params-add">
+    <%= link_to_add_association "Add a parameters", f, :parameters, class: 'btn btn-primary' %>
+  </div>
+</div>
+  
+
+  <%= f.actions do %>
+    <%= f.action :submit %>
+  <% end %>
+<% end %>
+

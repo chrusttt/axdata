@@ -1,0 +1,18 @@
+<%= semantic_form_for [@sample, @result], html: {multipart: true}  do |f| %>
+    <%= f.inputs "Result" do %>
+    	<%= f.input :name %>
+    	<%= f.input :description, input_html: { rows: 8} %>
+    	<%end%>
+    	<div>
+  
+		  <%= f.semantic_fields_for :attachments do |p| %>
+		  <%= render 'attachment_fields', f: p %>
+		  <%end%>
+		  
+		    <%= link_to_add_association "Add file", f, :attachments, class: 'btn btn-info' %>
+		  
+		</div>
+		<%= f.actions do %>
+		<%= f.action :submit%>
+		<%end%>
+	<%end%>
