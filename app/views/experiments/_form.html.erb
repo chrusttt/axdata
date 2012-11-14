@@ -4,8 +4,8 @@
     <%= f.input :description, input_html: { rows: 8} %>
     <%end%>
     <%=f.inputs "Samples" do%>
-    <input type="text" value="" name="q" id="q"  />
-    <%= f.input :samples, label: false,  :as => :select,      :collection => Sample.all, wrapper_html: { id: "samples_collection"} %>
+    
+    <%= f.input :samples, label: false,  :as => :select,  :collection => Sample.all, wrapper_html: { id: "samples_collection"} %>
     <%end%>
   <%= f.actions do %>
    <%= f.action :submit %>

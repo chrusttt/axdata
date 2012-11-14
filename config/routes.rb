@@ -4,7 +4,9 @@ AxData::Application.routes.draw do
 
 
 
-  resources :experiments
+  resources :experiments do
+    collection { get :search, to: 'experiments#index' }
+  end
 
   resources :samples do
   collection { get :search, to: 'samples#index' }

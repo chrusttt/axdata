@@ -29,7 +29,7 @@
   <%= semantic_search_form_for @search do |f| %>
     <%= f.inputs "Filter experiments" do %>
       <%= f.input :name_cont, label: "Name:" %>
-      <%= f.input :samples_name_cont, label: "Samples:", as: :check_boxes, collection: Sample.all %>
+      <%= f.input :samples_name_eq_any, label: "Samples:", as: :check_boxes, collection: Sample.all.map(&:name) %>
     <%end%>
   <%= f.actions do %>
   <%= f.action :submit %>

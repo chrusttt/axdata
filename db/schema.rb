@@ -36,10 +36,8 @@ ActiveRecord::Schema.define(:version => 20121111105334) do
   end
 
   create_table "experiments_samples", :force => true do |t|
-    t.integer  "experiment_id"
-    t.integer  "sample_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer "experiment_id"
+    t.integer "sample_id"
   end
 
   add_index "experiments_samples", ["experiment_id"], :name => "index_experiments_samples_on_experiment_id"

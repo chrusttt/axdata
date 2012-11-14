@@ -10,7 +10,11 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   validates_presence_of :name, :email, :role
   has_many :samples
+  
   ROLES = ['Super Admin', 'Admin', 'Student', 'User']
   ROLES_IN_PLACE = [['Super Admin', 'Super Admin'], ['Admin', 'Admin'], ['User', 'User'], ['Student', 'Student']]
   
+  def login_mailer
+    UserMailer.new_registration(self)
+  end
 end

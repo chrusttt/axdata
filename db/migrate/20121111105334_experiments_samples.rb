@@ -5,7 +5,7 @@ class ExperimentsSamples < ActiveRecord::Migration
       t.integer :sample_id
       
 
-      t.timestamps
+      
     end
     add_index :experiments_samples, :experiment_id               
     add_index :experiments_samples, :sample_id
