@@ -1,6 +1,8 @@
 <div class="row-fluid">
 <div class="span8">
+  <% if can? :create, Experiment %>
 <%= link_to 'New Experiment', new_experiment_path, class: 'btn btn-info pull-right' %>
+<%end%>
 <h2>Experiments:</h2>
 
 <table class="table table-striped">
@@ -19,8 +21,8 @@
     <td><ul><% experiment.samples.each do |s| %>
         <li><%=link_to s.name, sample_path(s) %></li>
         <%end%></ul>
-    <td><%= link_to 'Edit', edit_experiment_path(experiment) %></td>
-    <td><%= link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><% if can? :update, experiment %><%= link_to 'Edit', edit_experiment_path(experiment) %> <% end %></td>
+    <td><% if can? :destroy, Sample %><%= link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } %><%end%></td>
   </tr>
 <% end %>
 </table>

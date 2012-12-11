@@ -20,6 +20,7 @@ class PicUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -43,7 +44,7 @@ class PicUploader < CarrierWave::Uploader::Base
   end
 
   version :show do
-    process :resize_to_limit => [400, 400]
+    process :resize_to_limit => [300, 400]
   end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

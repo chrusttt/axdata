@@ -2,6 +2,7 @@
   <div class="span8">
   <% unless @sample.parameters.empty? %>
   <h2>Parameters:</h2>
+  
     <table class="table table-bordered">
      <thead>
         <th>Name</th>
@@ -41,6 +42,7 @@
           <%end%>
       </tbody>  
 </table>
+
 <% else %>
 <h2>There are no parameters for this sample in database</h2>
 <%end%>
@@ -50,16 +52,18 @@
     <%= render 'results/results_list' %>
   </ul>
 </div>
+<% if can? :create, Result %>
 <div class='links'>
   <%= link_to "Add result", new_sample_result_path(@sample), remote: true, class: 'btn btn-primary' %>
 </div>
+<%end%>
 <div id="new-result">
 </div>
   </div>
   <div class="span4">
     <table class="table">
       <tr> <td colspan='2'><%= image_tag(@sample.pic_url(:show)) %> </td> </tr>
-      <tr> <td colspan='2'><%= link_to "Edit sample", edit_sample_path(@sample), class: 'btn btn-info' %> <%= link_to "Remove sample", sample_path(@sample,), method: :delete, class: 'btn btn-alert', confirm: "Are you sure?" %>  </td></tr>
+      <tr> <td colspan='2'><% if can? :menage, @sample %><%= link_to "Edit sample", edit_sample_path(@sample), class: 'btn btn-info' %> <%= link_to "Remove sample", sample_path(@sample,), method: :delete, class: 'btn btn-alert', confirm: "Are you sure?" %> <%end%>  </td></tr>
       <tr> <td class="info">Name:</td> <td class="show-description"><%= best_in_place @sample, :name %></td></tr>
       <tr> <td class="info">Date:</td> <td class="show-description"><%= @sample.date %></td></tr>
       <tr> <td class="info">State:</td> <td class="show-description"><%= best_in_place @sample, :state, type: :select, collection: Sample::STATES_IN_PLACE %></td></tr>

@@ -2,11 +2,15 @@
 	<li> <%= div_for(r) do %> <h4><%= r.name %></h4><p><%= r.description %></p>
 		<h4>Files:</h4>
 				<ul> <% r.attachments.each do |f| %>
-					<li> <%= link_to f.file.identifier, f.file.url %> </li>
+					<li> <%= link_to f.file.file.filename, f.file.url %> </li>
 					<%end%>
 				</ul>
 			<div id="edit-result"></div>
+			<% if can? :update, Result %>
 			<%= link_to "Edit result", edit_sample_result_path(@sample,r), remote: true, class: 'btn btn-small btn-info' %>
+			<%end%>
+			<% if can? :destroy, Sample %>
 			<%= link_to "Remove result", sample_result_path(@sample,r), method: :delete, remote: true, class: 'btn btn-small btn-error', confirm: "Are you sure?" %> 
+			<%end%>
 			 <%end%></li>
 <%end%>

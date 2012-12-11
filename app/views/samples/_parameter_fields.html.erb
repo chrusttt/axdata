@@ -15,7 +15,7 @@
 
 <div id="customparameters">
 <%= f.semantic_fields_for :custom_parameters do |c| %>
-<%= render 'customparameter_fields', f: c %>
+<%= render 'custom_parameter_fields', f: c %>
 <% end %>
 
 <%= link_to_add_association "Add custom parameter", f, :custom_parameters, class: 'btn btn-small btn-primary' %>

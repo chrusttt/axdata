@@ -1,7 +1,9 @@
 <div class="row-fluid">
     <div class="span8">
+    <% if can? :create, Sample %>
     <%= link_to 'New Sample', new_sample_path, class: 'btn btn-info pull-right' %>
         <h2>Samples</h2>
+    <%end%>
 <table class="table table-bordered">
  <thead> 
     <th>Picture</th>

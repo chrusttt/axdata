@@ -1,7 +1,7 @@
 class Sample < ActiveRecord::Base
   belongs_to :user
   has_many :parameters, dependent: :destroy
-  accepts_nested_attributes_for :parameters
+  accepts_nested_attributes_for :parameters, :reject_if => :all_blank, :allow_destroy => true
   has_many :results, dependent: :destroy
   attr_accessible :parameters_attributes, :date, :description, :name, :pic, :state, :user_id
   mount_uploader :pic, PicUploader

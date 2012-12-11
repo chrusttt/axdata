@@ -5,5 +5,7 @@
     <td><%= sample.state %></td>
     <td><%= sample.date %></td>
     <td><%= sample.user.name %></td>
+    <% if can? :destroy, Sample %>
     <td><%= link_to 'Destroy', sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>

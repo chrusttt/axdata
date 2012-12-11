@@ -20,6 +20,7 @@
 </tbody>
 </table>
 </div>
+
 <% if current_user.role == "Super Admin" %>
 <div id="new-user" class="span4">
   <%= link_to "Add user", new_user_registration_path, remote: true, class: 'btn btn-block btn-primary' %>
